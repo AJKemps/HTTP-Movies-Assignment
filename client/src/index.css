@@ -5,7 +5,7 @@ body {
   background-color: #f2f2f2;
 }
 
-.movie-card {
+.save-wrapper {
   background-color: #fff;
   border: 0;
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
@@ -53,15 +53,15 @@ body {
   width: 75%;
   margin: 1rem auto;
 }
-.save-button {
-  position: absolute;
+.button {
   top: 25px;
   right: 25px;
   border: 1px solid grey;
   padding: 5px 10px;
   background-color: lightseagreen;
+  margin: 2%;
 }
-.save-button:hover {
+.button:hover {
   background-color: green;
   color: white;
 }
@@ -74,4 +74,12 @@ body {
 .movie-warning {
   color: red;
   text-align: center;
+}
+
+.button-group {
+  margin: 5%;
+}
+
+.button {
+  padding: 2%;
 }
