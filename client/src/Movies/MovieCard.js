@@ -1,9 +1,25 @@
-import React from 'react';
+import React from "react";
+import { motion } from "framer-motion";
 
-const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+const MovieCard = (props) => {
+  const { title, director, metascore, stars, id } = props.movie;
   return (
-    <div className="movie-card">
+    <motion.div
+      className="movie-cards"
+      initial={{
+        opacity: 1,
+        y: 100,
+        scale: 0,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      transition={{
+        duration: 1 + id / 2,
+      }}
+    >
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
@@ -13,12 +29,12 @@ const MovieCard = props => {
       </div>
       <h3>Actors</h3>
 
-      {stars.map(star => (
+      {stars.map((star) => (
         <div key={star} className="movie-star">
           {star}
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { useHistory, useParams } from "react-router-dom";
 
 const initialMovie = {
   title: "",
@@ -9,22 +9,10 @@ const initialMovie = {
   stars: [],
 };
 
-const UdpateForm = () => {
+const AddMovie = () => {
   const [movie, setMovie] = useState(initialMovie);
   const { id } = useParams();
   const { push } = useHistory();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/movies/${id}`)
-      .then((res) => {
-        console.log("API GET RESPONSE:", res.data);
-        setMovie(res.data);
-      })
-      .catch((err) => {
-        console.log("API GET ERROR:", err);
-      });
-  }, [id]);
 
   const handleChanges = (event) => {
     setMovie({
@@ -36,10 +24,10 @@ const UdpateForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`http://localhost:5000/api/movies/${id}`, movie)
+      .post(`http://localhost:5000/api/movies`, movie)
       .then((res) => {
         console.log("API PUT RESPONSE:", res.data);
-        push(`/movies/${id}`);
+        push(`/`);
       })
       .catch((err) => {
         console.log("API PUT ERROR:", err);
@@ -50,7 +38,7 @@ const UdpateForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <h1>Update Form</h1>
+          <h1>Add Movie</h1>
           <div className="inputGroup">
             <label>Title</label>
             <input
@@ -78,11 +66,11 @@ const UdpateForm = () => {
               value={movie.metascore}
             />
           </div>
-          <button type="submit">Update Movie</button>
+          <button type="submit">Add Movie</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default UdpateForm;
+export default AddMovie;
